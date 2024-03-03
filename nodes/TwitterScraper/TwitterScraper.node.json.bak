@@ -1,0 +1,20 @@
+{
+	"node": "n8n-nodes-twitter-scraper",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Marketing"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/Rishikant181/Rettiwt-API"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper"
+			}
+		]
+	}
+}

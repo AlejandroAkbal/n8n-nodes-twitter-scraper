@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-twitter-scraper",
   "version": "0.1.0",
-  "description": "Use Twitter without an APIs hassle",
+  "description": "Consume Twitter without their API",
   "keywords": [
     "n8n-community-node-package"
   ],
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper",
   "author": {
     "name": "Alejandro Akbal",
-    "email": ""
+    "email": "alejandro@localhost"
   },
   "repository": {
     "type": "git",
