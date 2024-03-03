@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-twitter-scraper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Consume Twitter without their API",
   "keywords": [
     "n8n-community-node-package"
@@ -33,7 +33,7 @@
       "dist/credentials/TwitterCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/TwitterScraper.node.js"
+      "dist/nodes/TwitterScraper/TwitterScraper.node.js"
     ]
   },
   "devDependencies": {
