@@ -52,28 +52,30 @@ and what changed, as well as any compatibility impact._
 
 ## Development
 
+### Initial setup
+
 ```bash
 
+# Node
 npm i
-
-npm run lintfix && npm run build
 
 npm link
 
-npm run dev
-```
+# n8n
+npm install -g n8n
 
-In other terminal
-
-```bash
 cd ~/.n8n
 
 mkdir -p custom
 cd custom
 
 npm link n8n-nodes-twitter-scraper
+```
 
-N8N_DEV_RELOAD=true n8n start
+Then to develop
+
+```bash
+ rm -rf dist && npm run build && n8n start
 ```
 
 

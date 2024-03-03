@@ -16,6 +16,8 @@ import {Rettiwt} from 'rettiwt-api'
 /**
  * Adapted code from:
  * @see https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/Twitter/V2/TwitterV2.node.ts
+ * Using the rettiwt-api package to interact with Twitter
+ * @see https://github.com/Rishikant181/Rettiwt-API/
  */
 export class TwitterScraperV1 implements INodeType {
 	description: INodeTypeDescription
@@ -91,15 +93,23 @@ export class TwitterScraperV1 implements INodeType {
 							inReplyToStatusId: INodeParameterResourceLocator;
 						}
 
-						const inReplyToStatusIdValue = returnId(inReplyToStatusId)
+						let inReplyToStatusIdValue
 
-						// TODO: Media
-						// @ts-ignore
-						const attachmentsValue = attachments
+						if (inReplyToStatusId) {
+							inReplyToStatusIdValue = returnId(inReplyToStatusId)
+						}
+
+						let attachmentsValue
+
+						if (attachments) {
+							attachmentsValue = [{
+								path: attachments
+							}]
+						}
 
 						responseData = await rettiwt.tweet.tweet(
 							text as string,
-							undefined,
+							attachmentsValue,
 							inReplyToStatusIdValue,
 						)
 					}
