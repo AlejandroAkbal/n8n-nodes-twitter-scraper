@@ -7,11 +7,13 @@ import type {
 	INodeTypeBaseDescription,
 	INodeTypeDescription,
 	JsonObject,
-} from 'n8n-workflow'
-import {tweetFields, tweetOperations} from './TweetDescription'
+} from 'n8n-workflow';
+import { tweetFields, tweetOperations } from './TweetDescription';
 
-import {returnId} from './GenericFunctions'
-import {Rettiwt} from 'rettiwt-api'
+import { Rettiwt, TweetFilter } from 'rettiwt-api';
+import { returnId } from './GenericFunctions';
+
+
 
 /**
  * Adapted code from:
@@ -51,7 +53,12 @@ export class TwitterScraperV1 implements INodeType {
 						{
 							name: 'Tweet',
 							value: 'tweet',
-							description: 'Create, retweet, or like a tweet',
+							description: 'Interact with tweets',
+						},
+						{
+							name: 'User',
+							value: 'user',
+							description: 'Search users',
 						},
 					],
 					default: 'tweet',
@@ -76,7 +83,7 @@ export class TwitterScraperV1 implements INodeType {
 		// Custom credentials
 		const credentials = await this.getCredentials('twitterScraperApi')
 
-		const rettiwt = new Rettiwt({apiKey: credentials.apiKey as string})
+		const rettiwt = new Rettiwt({ apiKey: credentials.apiKey as string })
 
 		for (let i = 0; i < length; i++) {
 			try {
@@ -84,7 +91,7 @@ export class TwitterScraperV1 implements INodeType {
 					if (operation === 'create') {
 						const text = this.getNodeParameter('text', i, '', {})
 
-						const {attachments, inReplyToStatusId} = this.getNodeParameter(
+						const { attachments, inReplyToStatusId } = this.getNodeParameter(
 							'additionalFields',
 							i,
 							{},
@@ -114,6 +121,19 @@ export class TwitterScraperV1 implements INodeType {
 						)
 					}
 
+					if (operation === 'retweet') {
+						const tweetRLC = this.getNodeParameter(
+							'tweetId',
+							i,
+							'',
+							{},
+						) as INodeParameterResourceLocator
+
+						const tweetId = returnId(tweetRLC)
+
+						responseData = await rettiwt.tweet.retweet(tweetId)
+					}
+
 					if (operation === 'like') {
 						const tweetRLC = this.getNodeParameter(
 							'tweetId',
@@ -127,23 +147,47 @@ export class TwitterScraperV1 implements INodeType {
 						responseData = await rettiwt.tweet.favorite(tweetId)
 					}
 
-					if (operation === 'retweet') {
-						const tweetRLC = this.getNodeParameter(
-							'tweetId',
+					if (operation === 'search') {
+						const searchText = this.getNodeParameter('searchText', i, '', {});
+
+						const limit = this.getNodeParameter('limit', i);
+
+						const { startTime, endTime, fromUsers } = this.getNodeParameter(
+							'additionalFields',
 							i,
-							'',
 							{},
-						) as INodeParameterResourceLocator
+						) as {
+							startTime: string;
+							endTime: string;
+							fromUsers: string;
+						};
 
-						const tweetId = returnId(tweetRLC)
+						const tweetFilter: TweetFilter = {}
 
-						responseData = await rettiwt.tweet.retweet(tweetId)
+						if (searchText) {
+							tweetFilter.includePhrase = searchText.toString()
+						}
+
+						if (startTime) {
+							tweetFilter.startDate = new Date(startTime)
+						}
+
+						if (endTime) {
+							tweetFilter.endDate = new Date(endTime)
+						}
+
+						if (fromUsers) {
+							tweetFilter.fromUsers = fromUsers.split(',')
+						}
+
+
+						responseData = await rettiwt.tweet.search(tweetFilter, limit)
 					}
 				}
 
 				const executionData = this.helpers.constructExecutionMetaData(
 					this.helpers.returnJsonArray(responseData as unknown as IDataObject[]),
-					{itemData: {item: i}},
+					{ itemData: { item: i } },
 				)
 
 				returnData.push(...executionData)
