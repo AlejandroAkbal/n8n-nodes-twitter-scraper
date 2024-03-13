@@ -9,6 +9,7 @@ import type {
 	JsonObject,
 } from 'n8n-workflow';
 import { tweetFields, tweetOperations } from './TweetDescription';
+import { userFields, userOperations } from './UserDescription';
 
 import { Rettiwt, TweetFilter } from 'rettiwt-api';
 import { returnId } from './GenericFunctions';
@@ -66,6 +67,9 @@ export class TwitterScraperV1 implements INodeType {
 				// TWEET
 				...tweetOperations,
 				...tweetFields,
+				// USER
+				...userOperations,
+				...userFields,
 			],
 		}
 	}
@@ -182,6 +186,24 @@ export class TwitterScraperV1 implements INodeType {
 
 
 						responseData = await rettiwt.tweet.search(tweetFilter, limit)
+					}
+				}
+
+				if (resource === 'user') {
+					if (operation === 'getUser') {
+						const username = this.getNodeParameter('user', i, '', {}) as INodeParameterResourceLocator
+
+						responseData = await rettiwt.user.details(username.value as string)
+					}
+
+					if (operation === 'getTimeline') {
+						const username = this.getNodeParameter('user', i, '', {}) as INodeParameterResourceLocator
+
+						const limit = this.getNodeParameter('limit', i);
+
+						const userData = await rettiwt.user.details(username.value as string)
+
+						responseData = await rettiwt.user.timeline(userData.id, limit)
 					}
 				}
 
