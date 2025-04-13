@@ -29,9 +29,6 @@ export class TwitterScraperV1 implements INodeType {
 			...baseDescription,
 
 			version: 1,
-			description: 'Consume Twitter without their API',
-			subtitle: '={{$parameter["operation"] + ":" + $parameter["resource"]}}',
-			group: ['output'],
 			defaults: {
 				name: 'Twitter Scraper',
 			},

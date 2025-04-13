@@ -7,9 +7,9 @@ export class TwitterScraper extends VersionedNodeType {
 		const baseDescription: INodeTypeBaseDescription = {
 			displayName: 'Twitter Scraper',
 			name: 'twitterScraper',
-			// icon: 'file:twitter.svg',
+			icon: 'file:twitter.svg',
 			group: ['output'],
-			subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
+			subtitle: '={{$parameter["resource"] + ":" + $parameter["operation"]}}',
 			description: 'Consume Twitter without their API',
 			defaultVersion: 1,
 		};
