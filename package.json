@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-twitter-scraper",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Consume Twitter without their API",
 	"keywords": [
 		"n8n-community-node-package"
@@ -37,17 +37,17 @@
 		]
 	},
 	"devDependencies": {
-		"@types/express": "^4.17.21",
+		"@types/express": "^5.0.1",
 		"@types/request-promise-native": "~1.0.21",
-		"@typescript-eslint/parser": "~7.1",
-		"eslint-plugin-n8n-nodes-base": "^1.16.1",
-		"gulp": "^4.0.2",
+		"@typescript-eslint/parser": "~8.29",
+		"eslint-plugin-n8n-nodes-base": "^1.16.3",
+		"gulp": "^5.0.0",
 		"n8n-core": "*",
 		"n8n-workflow": "*",
-		"prettier": "^3.2.5",
-		"typescript": "~5.3.3"
+		"prettier": "^3.5.3",
+		"typescript": "~5.8.3"
 	},
 	"dependencies": {
-		"rettiwt-api": "^2.6.2"
+		"rettiwt-api": "^4.2.0"
 	}
 }

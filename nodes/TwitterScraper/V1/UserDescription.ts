@@ -21,15 +21,13 @@ export const userOperations: INodeProperties[] = [
 			{
 				name: 'Get Timeline',
 				value: 'getTimeline',
-				description: 'Retrieve a user\'s timeline',
+				description: "Retrieve a user's timeline",
 				action: 'Get user timeline',
 			},
 		],
 		default: 'getUser',
 	},
 ];
-
-
 
 export const userFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
@@ -47,9 +45,6 @@ export const userFields: INodeProperties[] = [
 				operation: ['getUser'],
 				resource: ['user'],
 			},
-			hide: {
-				me: [true],
-			},
 		},
 		modes: [
 			{
@@ -61,19 +56,6 @@ export const userFields: INodeProperties[] = [
 				url: '',
 			},
 		],
-	},
-	{
-		displayName: 'Me',
-		name: 'me',
-		type: 'boolean',
-		displayOptions: {
-			show: {
-				operation: ['getUser'],
-				resource: ['user'],
-			},
-		},
-		default: false,
-		description: 'Whether you want to search the authenticated user',
 	},
 
 	/* -------------------------------------------------------------------------- */
@@ -119,5 +101,5 @@ export const userFields: INodeProperties[] = [
 				resource: ['user'],
 			},
 		},
-	}
+	},
 ];

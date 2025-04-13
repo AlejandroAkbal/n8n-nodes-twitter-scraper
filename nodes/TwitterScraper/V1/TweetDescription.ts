@@ -1,4 +1,4 @@
-import type { INodeProperties } from 'n8n-workflow'
+import type { INodeProperties } from 'n8n-workflow';
 
 export const tweetOperations: INodeProperties[] = [
 	{
@@ -17,6 +17,12 @@ export const tweetOperations: INodeProperties[] = [
 				value: 'create',
 				description: 'Create, quote, or reply to a tweet',
 				action: 'Create tweet',
+			},
+			{
+				name: 'Upload Media',
+				value: 'uploadMedia',
+				description: 'Upload media and return a media ID',
+				action: 'Upload media',
 			},
 			{
 				name: 'Retweet',
@@ -39,7 +45,7 @@ export const tweetOperations: INodeProperties[] = [
 		],
 		default: 'create',
 	},
-]
+];
 
 export const tweetFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
@@ -77,19 +83,18 @@ export const tweetFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Attachments',
-				name: 'attachments',
+				displayName: 'Media ID',
+				name: 'mediaId',
 				type: 'string',
-				default: 'data',
+				default: '',
 				description:
-					'Path to media file',
+					'ID of the media to attach to the tweet (obtained from the Upload Media operation)',
 			},
 			{
 				displayName: 'Reply to Tweet',
 				name: 'inReplyToStatusId',
 				type: 'resourceLocator',
 				default: { mode: 'id', value: '' },
-				// required: true,
 				description: 'The tweet being replied to',
 				modes: [
 					{
@@ -111,6 +116,24 @@ export const tweetFields: INodeProperties[] = [
 				],
 			},
 		],
+	},
+
+	/* -------------------------------------------------------------------------- */
+	/*                                tweet:uploadMedia                           */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Media Attachment',
+		name: 'binaryPropertyName',
+		type: 'string',
+		default: 'data',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['uploadMedia'],
+				resource: ['tweet'],
+			},
+		},
+		description: 'Name of the binary property containing the media to upload',
 	},
 
 	/* -------------------------------------------------------------------------- */
@@ -200,7 +223,7 @@ export const tweetFields: INodeProperties[] = [
 				resource: ['tweet'],
 			},
 		},
-		description: 'The text to search for'
+		description: 'The text to search for',
 	},
 	{
 		displayName: 'Limit',
@@ -253,8 +276,7 @@ export const tweetFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				description: 'A comma-separated list of usernames, without the @ symbol',
-			}
+			},
 		],
 	},
-
-]
+];
