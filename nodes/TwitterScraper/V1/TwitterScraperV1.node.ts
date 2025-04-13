@@ -90,6 +90,19 @@ export class TwitterScraperV1 implements INodeType {
 		for (let i = 0; i < length; i++) {
 			try {
 				if (resource === 'tweet') {
+					if (operation === 'delete') {
+						const tweetRLC = this.getNodeParameter(
+							'tweetId',
+							i,
+							'',
+							{},
+						) as INodeParameterResourceLocator;
+
+						const tweetId = returnId(tweetRLC);
+
+						responseData = await rettiwt.tweet.unpost(tweetId);
+					}
+
 					if (operation === 'create') {
 						const text = this.getNodeParameter('text', i, '', {});
 
@@ -158,6 +171,19 @@ export class TwitterScraperV1 implements INodeType {
 						responseData = await rettiwt.tweet.retweet(tweetId);
 					}
 
+					if (operation === 'unretweet') {
+						const tweetRLC = this.getNodeParameter(
+							'tweetId',
+							i,
+							'',
+							{},
+						) as INodeParameterResourceLocator;
+
+						const tweetId = returnId(tweetRLC);
+
+						responseData = await rettiwt.tweet.unretweet(tweetId);
+					}
+
 					if (operation === 'like') {
 						const tweetRLC = this.getNodeParameter(
 							'tweetId',
@@ -169,6 +195,19 @@ export class TwitterScraperV1 implements INodeType {
 						const tweetId = returnId(tweetRLC);
 
 						responseData = await rettiwt.tweet.like(tweetId);
+					}
+
+					if (operation === 'unlike') {
+						const tweetRLC = this.getNodeParameter(
+							'tweetId',
+							i,
+							'',
+							{},
+						) as INodeParameterResourceLocator;
+
+						const tweetId = returnId(tweetRLC);
+
+						responseData = await rettiwt.tweet.unlike(tweetId);
 					}
 
 					if (operation === 'search') {

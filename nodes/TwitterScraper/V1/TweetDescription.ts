@@ -19,6 +19,12 @@ export const tweetOperations: INodeProperties[] = [
 				action: 'Create tweet',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Delete a tweet',
+				action: 'Delete tweet',
+			},
+			{
 				name: 'Upload Media',
 				value: 'uploadMedia',
 				description: 'Upload media and return a media ID',
@@ -31,10 +37,22 @@ export const tweetOperations: INodeProperties[] = [
 				action: 'Retweet tweet',
 			},
 			{
+				name: 'Unretweet',
+				value: 'unretweet',
+				description: 'Unretweet a tweet',
+				action: 'Unretweet tweet',
+			},
+			{
 				name: 'Like',
 				value: 'like',
 				description: 'Like a tweet',
 				action: 'Like tweet',
+			},
+			{
+				name: 'Unlike',
+				value: 'unlike',
+				description: 'Unlike a tweet',
+				action: 'Unlike tweet',
 			},
 			{
 				name: 'Search',
@@ -185,6 +203,114 @@ export const tweetFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				operation: ['like'],
+				resource: ['tweet'],
+			},
+		},
+		modes: [
+			{
+				displayName: 'By ID',
+				name: 'id',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. 1187836157394112513',
+				url: '',
+			},
+			{
+				displayName: 'By URL',
+				name: 'url',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. https://twitter.com/n8n_io/status/1187836157394112513',
+				url: '',
+			},
+		],
+	},
+
+	/* -------------------------------------------------------------------------- */
+	/*                                tweet:unlike                                */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Tweet',
+		name: 'tweetId',
+		type: 'resourceLocator',
+		default: { mode: 'id', value: '' },
+		required: true,
+		description: 'The tweet to unlike',
+		displayOptions: {
+			show: {
+				operation: ['unlike'],
+				resource: ['tweet'],
+			},
+		},
+		modes: [
+			{
+				displayName: 'By ID',
+				name: 'id',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. 1187836157394112513',
+				url: '',
+			},
+			{
+				displayName: 'By URL',
+				name: 'url',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. https://twitter.com/n8n_io/status/1187836157394112513',
+				url: '',
+			},
+		],
+	},
+
+	/* -------------------------------------------------------------------------- */
+	/*                                tweet:unretweet                             */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Tweet',
+		name: 'tweetId',
+		type: 'resourceLocator',
+		default: { mode: 'id', value: '' },
+		required: true,
+		description: 'The tweet to unretweet',
+		displayOptions: {
+			show: {
+				operation: ['unretweet'],
+				resource: ['tweet'],
+			},
+		},
+		modes: [
+			{
+				displayName: 'By ID',
+				name: 'id',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. 1187836157394112513',
+				url: '',
+			},
+			{
+				displayName: 'By URL',
+				name: 'url',
+				type: 'string',
+				validation: [],
+				placeholder: 'e.g. https://twitter.com/n8n_io/status/1187836157394112513',
+				url: '',
+			},
+		],
+	},
+
+	/* -------------------------------------------------------------------------- */
+	/*                                tweet:delete                                */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Tweet',
+		name: 'tweetId',
+		type: 'resourceLocator',
+		default: { mode: 'id', value: '' },
+		required: true,
+		description: 'The tweet to delete',
+		displayOptions: {
+			show: {
+				operation: ['delete'],
 				resource: ['tweet'],
 			},
 		},
