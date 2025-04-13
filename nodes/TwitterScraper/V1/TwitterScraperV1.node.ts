@@ -8,6 +8,7 @@ import type {
 	INodeTypeDescription,
 	JsonObject,
 } from 'n8n-workflow';
+import { NodeOperationError } from 'n8n-workflow';
 import { tweetFields, tweetOperations } from './TweetDescription';
 import { userFields, userOperations } from './UserDescription';
 
@@ -277,7 +278,7 @@ export class TwitterScraperV1 implements INodeType {
 						const userData = await rettiwt.user.details(username.value as string);
 
 						if (!userData) {
-							throw new Error('User not found');
+							throw new NodeOperationError(this.getNode(), 'User not found');
 						}
 
 						responseData = await rettiwt.user.timeline(userData.id, limit);
