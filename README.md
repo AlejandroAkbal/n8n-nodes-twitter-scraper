@@ -19,7 +19,7 @@ Twitter is a social media platform where users post and interact with messages k
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
 ```bash
-npm install n8n-nodes-twitter-scraper
+pnpm i n8n-nodes-twitter-scraper
 ```
 
 Alternatively, you can install it directly from the n8n UI:
@@ -67,6 +67,82 @@ To obtain the API key check out the [Rettiwt-API documentation](https://github.c
 Check out the [commit history](https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper/commits/master) for version details.
 
 ## Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) version 18.10 or later
+- [pnpm](https://pnpm.io/) (for package management)
+- [n8n](https://n8n.io/) (for testing)
+
+### Install n8n
+
+```bash
+npm install -g n8n
+```
+
+### Setup for Development
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper.git
+cd n8n-nodes-twitter-scraper
+```
+
+2. Install dependencies
+
+```bash
+pnpm install
+```
+
+3. Build the project
+
+```bash
+pnpm build
+```
+
+### Local Development Workflow
+
+1. Start the development build
+
+```bash
+rm -rf ./dist
+
+pnpm build
+```
+
+2. Link to your local n8n installation for testing
+
+```bash
+pnpm link --global
+
+mkdir -p ~/.n8n/custom/n8n-nodes-twitter-scraper
+
+cd ~/.n8n/custom/n8n-nodes-twitter-scraper
+
+pnpm link n8n-nodes-twitter-scraper
+```
+
+3. Start n8n with your linked node
+
+```bash
+n8n start
+```
+
+### Publishing
+
+1. Update the version in package.json
+2. Build the project
+
+```bash
+pnpm build
+```
+
+3. Publish to npm
+
+```bash
+pnpm publish
+```
 
 ### Merging from upstream
 
