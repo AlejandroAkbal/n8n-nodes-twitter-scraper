@@ -403,6 +403,13 @@ export const tweetFields: INodeProperties[] = [
 				default: '',
 				description: 'A comma-separated list of usernames, without the @ symbol',
 			},
+			{
+				displayName: 'Search Top Tweets',
+				name: 'top',
+				type: 'boolean',
+				default: true,
+				description: 'If enabled, search for top (most popular) tweets instead of recent tweets',
+			},
 		],
 	},
 ];

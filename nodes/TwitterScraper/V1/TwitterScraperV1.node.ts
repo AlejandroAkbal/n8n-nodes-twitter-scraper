@@ -215,7 +215,7 @@ export class TwitterScraperV1 implements INodeType {
 
 						const limit = this.getNodeParameter('limit', i);
 
-						const { startTime, endTime, fromUsers } = this.getNodeParameter(
+						const { startTime, endTime, fromUsers, searchTop } = this.getNodeParameter(
 							'additionalFields',
 							i,
 							{},
@@ -223,6 +223,7 @@ export class TwitterScraperV1 implements INodeType {
 							startTime: string;
 							endTime: string;
 							fromUsers: string;
+							searchTop: boolean;
 						};
 
 						const tweetFilter: TweetFilter = {};
@@ -241,6 +242,10 @@ export class TwitterScraperV1 implements INodeType {
 
 						if (fromUsers) {
 							tweetFilter.fromUsers = fromUsers.split(',');
+						}
+
+						if (searchTop) {
+							tweetFilter.top = searchTop;
 						}
 
 						responseData = await rettiwt.tweet.search(tweetFilter, limit);
