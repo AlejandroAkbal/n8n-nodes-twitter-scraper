@@ -65,3 +65,22 @@ To obtain the API key check out the [Rettiwt-API documentation](https://github.c
 ## Version history
 
 Check out the [commit history](https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper/commits/master) for version details.
+
+## Development
+
+### Merging from upstream
+
+To merge changes from the upstream n8n-nodes-starter repository:
+
+```bash
+# Add the upstream repository as a remote
+git remote add upstream https://github.com/n8n-io/n8n-nodes-starter.git
+
+# Fetch the changes from the upstream repository
+git fetch upstream
+
+# Merge the changes from the upstream master branch
+git merge upstream/master --allow-unrelated-histories
+
+# Resolve any merge conflicts and commit the changes
+```
