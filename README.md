@@ -1,46 +1,67 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-twitter-scraper
 
-# n8n-nodes-starter
+This is an n8n community node. It lets you use Twitter (X) in your n8n workflows without requiring the official API.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
+Twitter is a social media platform where users post and interact with messages known as "tweets". This node allows you to interact with Twitter through web scraping techniques, avoiding Twitter API restrictions and costs.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-## Prerequisites
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  
+[Compatibility](#compatibility)  
+[Usage](#usage)  
+[Resources](#resources)  
+[Version history](#version-history)
 
-You need the following installed on your development machine:
+## Installation
 
-* [git](https://git-scm.com/downloads)
-* Node.js and pnpm. Minimum version Node 18. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  pnpm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-## Using this starter
+```bash
+npm install n8n-nodes-twitter-scraper
+```
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+Alternatively, you can install it directly from the n8n UI:
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `pnpm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `pnpm lint` to check for errors or `pnpm lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+## Operations
 
-## More information
+This node provides operations for two resources: Tweets and Users.
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+### Tweet Operations
 
-## License
+- **Create**: Create, quote, or reply to a tweet
+- **Delete**: Delete a tweet
+- **Upload Media**: Upload media and return a media ID for use in tweets
+- **Retweet**: Retweet a tweet
+- **Unretweet**: Unretweet a tweet
+- **Like**: Like a tweet
+- **Unlike**: Unlike a tweet
+- **Search**: Search for tweets, with options for filtering by date, user, and more
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+### User Operations
+
+- **Get User**: Get user details by username
+- **Get Timeline**: Get a user's timeline by username
+
+## Credentials
+
+This node uses the Rettiwt-API under the hood, which requires an API key. The API key is used for authentication with Twitter's web interface, not the official API.
+
+To obtain the API key check out the [Rettiwt-API documentation](https://github.com/Rishikant181/Rettiwt-API#Authentication).
+
+## Compatibility
+
+- Minimum n8n version: Latest regular release
+- Requires Node.js v18.10 or later
+- Compatible with both n8n desktop and cloud environments
+
+## Resources
+
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [Rettiwt-API documentation](https://github.com/Rishikant181/Rettiwt-API/)
+- [Project repository](https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper)
+
+## Version history
+
+Check out the [commit history](https://github.com/AlejandroAkbal/n8n-nodes-twitter-scraper/commits/master) for version details.
