@@ -83,7 +83,23 @@ export class TwitterScraperV1 implements INodeType {
 		// Custom credentials
 		const credentials = await this.getCredentials('twitterScraperApi');
 
-		const rettiwt = new Rettiwt({ apiKey: credentials.apiKey as string });
+		// Prepare Rettiwt config with optional proxy
+		const rettiwtConfig: { apiKey: string; proxyUrl?: URL } = {
+			apiKey: credentials.apiKey as string,
+		};
+
+		const proxyUrl = credentials.proxyUrl as string | undefined;
+
+		if (proxyUrl && proxyUrl.trim() !== '') {
+			try {
+				rettiwtConfig.proxyUrl = new URL(proxyUrl);
+			} catch (error) {
+				throw new NodeOperationError(this.getNode(), `The Proxy URL "${proxyUrl}" is not valid.`);
+			}
+		}
+
+		const rettiwt = new Rettiwt(rettiwtConfig);
+
 
 		for (let i = 0; i < length; i++) {
 			try {
