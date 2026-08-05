@@ -83,7 +83,10 @@ export class TwitterScraperV1 implements INodeType {
 		// Custom credentials
 		const credentials = await this.getCredentials('twitterScraperApi');
 
-		const rettiwt = new Rettiwt({ apiKey: credentials.apiKey as string });
+		const rettiwt = new Rettiwt({
+			apiKey: credentials.apiKey as string,
+			proxy: credentials.proxy as string,
+		});
 
 		for (let i = 0; i < length; i++) {
 			try {

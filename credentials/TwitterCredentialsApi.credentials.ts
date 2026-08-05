@@ -15,6 +15,13 @@ export class TwitterCredentialsApi implements ICredentialType {
 			},
 			default: '',
 		},
-		// TODO: Proxy
+		{
+			displayName: 'Proxy URL',
+			name: 'proxy',
+			type: 'string',
+			default: '',
+			placeholder: 'http://user:pass@host:port',
+			description: 'Proxy URL to use for requests',
+		},
 	];
 }
